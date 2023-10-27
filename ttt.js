@@ -11,10 +11,10 @@ function setup() {
 }
 
 function mousePressed() {
-    let i = floor(mouseX / width / DIM);
-    let j = floor(mouseY / height / DIM);
+    let i = floor(mouseX / width * DIM);
+    let j = floor(mouseY / height * DIM);
 
-    if (grid[j][i] == "") grid[j][i] = "X";
+    if (grid[j][i] === "") grid[j][i] = "X";
     
   }
 
