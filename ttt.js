@@ -1,12 +1,13 @@
 let grid = [];
+let currentPlayer = 0;
 const DIM = 3;
 
 function setup() {
     createCanvas(600, 600);
     grid = [
-        ["", "X", ""],
-        ["", "O", "X"],
-        ["", "X", "O"]
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]
     ]
 }
 
@@ -14,9 +15,23 @@ function mousePressed() {
     let i = floor(mouseX / width * DIM);
     let j = floor(mouseY / height * DIM);
 
-    if (grid[j][i] === "") grid[j][i] = "X";
+    if (grid[j][i] === "" && currentPlayer == 0) {
+        grid[j][i] = "X";
+        currentPlayer = 1;
+    } else if (grid[j][i] === "" && currentPlayer == 1) {
+        grid[j][i] = "O";
+        currentPlayer = 0;
+    }
     
-  }
+}
+
+function checkWinner() {
+    for (let i = 0; i < DIM; i++) {
+        if (grid[i][0] == grid[i][1] == grid[i][2] && grid[i][0] != "") {
+            console.log("win")
+        }
+    }
+}
 
 function draw() {
     background(0);
@@ -42,4 +57,5 @@ function draw() {
             }
         }
     }
+    checkWinner();
 }
