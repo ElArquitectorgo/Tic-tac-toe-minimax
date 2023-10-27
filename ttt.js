@@ -1,5 +1,5 @@
 let grid = [];
-let currentPlayer = 0;
+let currentPlayer = "X";
 const DIM = 3;
 
 function setup() {
@@ -15,22 +15,31 @@ function mousePressed() {
     let i = floor(mouseX / width * DIM);
     let j = floor(mouseY / height * DIM);
 
-    if (grid[j][i] === "" && currentPlayer == 0) {
+    if (grid[j][i] === "" && currentPlayer == "X") {
         grid[j][i] = "X";
-        currentPlayer = 1;
-    } else if (grid[j][i] === "" && currentPlayer == 1) {
+    } else if (grid[j][i] === "" && currentPlayer == "O") {
         grid[j][i] = "O";
-        currentPlayer = 0;
     }
-    
+
+    checkWinner();
+    currentPlayer = (currentPlayer == "X"?"O":"X")
 }
 
 function checkWinner() {
+    let winner = false;
     for (let i = 0; i < DIM; i++) {
-        if (grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2] && grid[i][0] != "") {
-            console.log("X wins");
+        if (((grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2]) && grid[i][0] != "") || 
+            (((grid[0][i] == grid[1][i] && grid[0][i] == grid[2][i]) && grid[0][i] != ""))) {
+            winner = true;
+            break;
         }
     }
+    if (((grid[0][0] == grid[1][1] && grid[0][0] == grid[2][2]) && grid[0][0] != "") || 
+        (((grid[0][2] == grid[1][1] && grid[0][2] == grid[2][0]) && grid[0][2] != ""))) {
+            winner = true;
+    }
+
+    if (winner) console.log(currentPlayer + " wins");
 }
 
 function draw() {
@@ -57,5 +66,4 @@ function draw() {
             }
         }
     }
-    checkWinner();
 }
