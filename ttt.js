@@ -27,8 +27,8 @@ function mousePressed() {
 
 function checkWinner() {
     for (let i = 0; i < DIM; i++) {
-        if (grid[i][0] == grid[i][1] == grid[i][2] && grid[i][0] != "") {
-            console.log("win")
+        if (grid[i][0] == grid[i][1] && grid[i][0] == grid[i][2] && grid[i][0] != "") {
+            console.log("X wins");
         }
     }
 }
