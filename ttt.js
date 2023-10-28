@@ -1,6 +1,6 @@
 let grid = [];
 let currentPlayer;
-let isWin = false;
+let isWin;
 const DIM = 3;
 
 function setup() {
